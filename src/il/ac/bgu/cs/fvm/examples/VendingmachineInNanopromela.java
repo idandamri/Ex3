@@ -1,0 +1,22 @@
+package il.ac.bgu.cs.fvm.examples;
+
+import il.ac.bgu.cs.fvm.Ex3FacadeImpl;
+import il.ac.bgu.cs.fvm.programgraph.ProgramGraph;
+
+public class VendingmachineInNanopromela {
+
+	static Ex3FacadeImpl Ex3FacadeImpl = new Ex3FacadeImpl();
+
+	public static ProgramGraph build() throws Exception {
+		return Ex3FacadeImpl.programGraphFromNanoPromelaString(//
+				"do :: true ->                                      \n" + //
+						"		skip;                                       \n" + //
+						"		if 	:: nsoda > 0 -> nsoda := nsoda - 1      \n" + //
+						"			:: nbeer > 0 -> nbeer := nbeer - 1      \n" + //
+						"			:: (nsoda == 0) && (nbeer == 0) -> skip \n" + //
+						"		fi                                          \n" + //
+						"	:: true -> atomic{nbeer := 3; nsoda := 3}       \n" + //
+						"od");
+	}
+
+}
